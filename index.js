@@ -44,7 +44,7 @@ const STORE = [
     correctAnswer: "60%"},
 
     {question: "What is the average thickness of human skin?",
-    answers: ["2mm", ".2mm", "6mm", "12mm"],
+    answers: ["2mm", "0.2mm", "6mm", "12mm"],
     correctAnswer: "2mm"}];  
 
     var questionNumber = 0;
@@ -71,7 +71,7 @@ const STORE = [
     }
 
     function generateQuizString(arr, index) {
-        var quizString = `<form><p>${arr[index].question}</p><input type="radio" id="choice-1" name="choice" value="${arr[index].answers[0]}" required><label for="choice-1">${arr[index].answers[0]}</label><br><input type="radio" id="choice-2" name="choice" value="${arr[index].answers[1]}"><label for="choice-2">${arr[index].answers[1]}</label><br><input type="radio" id="choice-3" name="choice" value="${arr[index].answers[2]}"><label for="choice-3">${arr[index].answers[2]}</label><br><input type="radio" id="choice-4" name="choice" value="${arr[index].answers[3]}"><label for="choice-4">${arr[index].answers[3]}</label><br><div class="button"><input type="submit" class="js-submit-answer"><br><button class="js-reset">Reset Quiz</button></div></form>`
+        var quizString = `<form><fieldset><legend>${arr[index].question}</legend><input type="radio" id="choice-1" name="choice" value="${arr[index].answers[0]}" required><label for="choice-1">${arr[index].answers[0]}</label><br><input type="radio" id="choice-2" name="choice" value="${arr[index].answers[1]}"><label for="choice-2">${arr[index].answers[1]}</label><br><input type="radio" id="choice-3" name="choice" value="${arr[index].answers[2]}"><label for="choice-3">${arr[index].answers[2]}</label><br><input type="radio" id="choice-4" name="choice" value="${arr[index].answers[3]}"><label for="choice-4">${arr[index].answers[3]}</label><br><div class="button"><input type="submit" class="js-submit-answer"><br><button class="js-reset">Reset Quiz</button></div></fieldset></form>`
 
         return quizString;
     }

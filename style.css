@@ -94,6 +94,11 @@ header {
   margin-bottom: 2em;
 }
 
+.quiz-question-box fieldset {
+  margin-top: 30px;
+  border: none;
+}
+
 .quiz-question-box input[type="radio"] {
   padding: 0px;
   margin: 10px;
