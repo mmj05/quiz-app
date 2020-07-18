@@ -71,7 +71,7 @@ const STORE = [
     }
 
     function generateQuizString(arr, index) {
-        var quizString = `<form><p>${arr[index].question}</p><input type="radio" id="choice-1" name="choice" value="${arr[index].answers[0]}"><label for="choice-1">${arr[index].answers[0]}</label><br><input type="radio" id="choice-2" name="choice" value="${arr[index].answers[1]}"><label for="choice-2">${arr[index].answers[1]}</label><br><input type="radio" id="choice-3" name="choice" value="${arr[index].answers[2]}"><label for="choice-3">${arr[index].answers[2]}</label><br><input type="radio" id="choice-4" name="choice" value="${arr[index].answers[3]}"><label for="choice-4">${arr[index].answers[3]}</label><br><button class="js-submit-answer">Submit</button><br><button class="js-reset">Reset Quiz</button></form>`
+        var quizString = `<form><p>${arr[index].question}</p><input type="radio" id="choice-1" name="choice" value="${arr[index].answers[0]}" required><label for="choice-1">${arr[index].answers[0]}</label><br><input type="radio" id="choice-2" name="choice" value="${arr[index].answers[1]}"><label for="choice-2">${arr[index].answers[1]}</label><br><input type="radio" id="choice-3" name="choice" value="${arr[index].answers[2]}"><label for="choice-3">${arr[index].answers[2]}</label><br><input type="radio" id="choice-4" name="choice" value="${arr[index].answers[3]}"><label for="choice-4">${arr[index].answers[3]}</label><br><div class="button"><input type="submit" class="js-submit-answer"><br><button class="js-reset">Reset Quiz</button></div></form>`
 
         return quizString;
     }
@@ -101,7 +101,7 @@ const STORE = [
 
     function finishQuiz() {
         $(".js-quiz-intro").show();
-        $(".js-quiz-intro").html(`<p>Your final score is ${score}</p><button class="js-reset">Take The Quiz Again</button>`);
+        $(".js-quiz-intro").html(`<p>Your final score is: ${score}</p><button class="js-reset">Take The Quiz Again</button>`);
         $(".js-score-info").hide();
         $(".js-quiz-question-box").hide();
         $(".js-correct-answer").hide();
@@ -109,6 +109,7 @@ const STORE = [
     }
 
     function continueQuiz() {
+        updateQuestionNumber();
         if (questionNumber <= STORE.length) {
         generateQuestion(STORE, index);
         } else {
@@ -117,10 +118,10 @@ const STORE = [
     }
 
     function resetQuiz() {
-        $(".js-quiz-question-box, .js-quiz-intro").on("click", ".js-reset", function(event){
+        $(".js-quiz-question-box, .js-quiz-intro, .js-correct-answer, .js-wrong-answer").on("click", ".js-reset", function(event){
             event.preventDefault();
             score = 0;
-            questionNumber = 0;
+            questionNumber = 1;
             index = 0;
             generateQuestion(STORE, index);
         })
@@ -129,10 +130,10 @@ const STORE = [
     function correctAnswer() {
 
         var correctAnswerString;
-        if (questionNumber <= STORE.length) {
-            correctAnswerString = `<p>Your answer is right!!!</p><br><button class="js-next-question">Next Question</button>`;
+        if (questionNumber < STORE.length) {
+            correctAnswerString = `<p>Your answer is right!!!</p><br><div class="button"><button class="js-next-question">Next Question</button><button class="js-reset">Reset Quiz</button></div>`;
         } else {
-            correctAnswerString = `<p>Your answer is right!!!</p><br><button class="js-next-question">See Final Score</button>`;
+            correctAnswerString = `<p>Your answer is right!!!</p><br><div class="button"><button class="js-next-question">See Final Score</button></div>`;
         }
         return correctAnswerString;
     }
@@ -140,10 +141,10 @@ const STORE = [
     function wrongAnswer(arr, index) {
 
         var wrongAnswerString; 
-        if (questionNumber <= STORE.length) {
-            wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><button class="js-next-question">Next Question</button>`;
+        if (questionNumber < STORE.length) {
+            wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><div class="button"><button class="js-next-question">Next Question</button><button class="js-reset">Reset Quiz</button></div>`;
         } else {
-            wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><button class="js-next-question">See Final Score</button>`;
+            wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><div class="button"><button class="js-next-question">See Final Score</button></div>`;
         }
         
         return wrongAnswerString;
@@ -173,7 +174,6 @@ const STORE = [
     function submitAnswer() {
         $(".js-quiz-question-box").on("click", ".js-submit-answer", function(event){
         event.preventDefault();
-        updateQuestionNumber();
         checkAnswer(STORE, index);
         })
     }
@@ -182,7 +182,7 @@ const STORE = [
         $(".js-correct-answer, .js-wrong-answer").on("click",".js-next-question", function(event) {
             updateIndex();
             continueQuiz();
-        })
+          })
     }
 
     function handleQuizApp() {
