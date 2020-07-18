@@ -48,19 +48,21 @@ header {
 }
 
 .quiz-intro button {
-  background-color: #ff4d4d;
+  background-color: #ffc266;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 .start-quiz {
-  background-color: #ff4d4d;
+  background-color: #ffc266;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 .score-info {
@@ -112,11 +114,12 @@ header {
 }
 
 .quiz-question-box input[type="submit"], .quiz-question-box button {
-  background-color: #ff4d4d;
+  background-color: #ffc266;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 .correct-answer {
@@ -133,11 +136,12 @@ header {
 }
 
 .correct-answer button{
-  background-color: #ff4d4d;
+  background-color: #ffc266;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 .wrong-answer {
@@ -154,16 +158,17 @@ header {
 }
 
 .wrong-answer button{
-  background-color: #ff4d4d;
+  background-color: #ffc266;
   padding: 10px;
   margin: 20px;
   font-size: 18px;
   font-weight: 700;
+  border-radius: 5px;
 }
 
 button:hover, input[type="submit"]:hover {
   cursor: pointer;
-  background-color: #e60000;
+  background-color: #e68a00;
 }
 
 @media all and (min-width: 500px) {

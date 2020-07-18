@@ -144,14 +144,21 @@ const STORE = [
         if (questionNumber < STORE.length) {
             wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><div class="button"><button class="js-next-question">Next Question</button><button class="js-reset">Reset Quiz</button></div>`;
         } else {
-            wrongAnswerString = `<p>Oops! Your answer is wrong!!!</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><div class="button"><button class="js-next-question">See Final Score</button></div>`;
+            wrongAnswerString = `<p>Oops! Your answer is wrong.</p><p>Correct answer is: ${arr[index].correctAnswer}</p><br><div class="button"><button class="js-next-question">See Final Score</button></div>`;
         }
         
         return wrongAnswerString;
     }
 
     function checkAnswer(arr, index) {
+
         var radioValue = $('input[name="choice"]:checked').val();
+
+        if(!radioValue)
+        {
+          alert("Please select an aswer to continue");
+          return false;
+        }
         
         if (radioValue === arr[index].correctAnswer) {
             updateScore();
